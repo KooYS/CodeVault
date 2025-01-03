@@ -1,0 +1,47 @@
+github:
+  - .github/**/*
+
+actions:
+  - .github/workflows/**/*
+
+config:
+  - .babelrc
+  - .editorconfig
+  - .browserlistrc
+  - .eslintrc.json
+  - .gitignore
+  - .npmrc
+  - .nvmrc
+  - .prettierrc.js
+  - .prettierignore
+  - next.config.js
+  - tsconfig.json
+  - tsconfig.lib.json
+  - tsconfig.spec.json
+  - next-env.d.ts
+  - project.json
+  - workspace.json
+  - nx.json
+  - package.json
+  - ./**/*/package.json
+
+test:
+  - src/**/*.spec.ts
+  - src/**/*.spec.tsx
+  - src/**/*.test.ts
+  - src/**/*.test.tsx
+
+documentation:
+  - ./**/*.md
+
+dependencies:
+  - package.json
+  - pnpm-lock.json
+# api:
+#   - apps/api/**/*
+
+# web:
+#   - apps/web/**/*
+
+# public:
+#   - apps/public/**/*
