@@ -1,135 +1,271 @@
 const side_bar_menu = [
   {
-    title: "Getting Started",
-    url: "/getting_started",
+    title: "🏠 Dashboard",
+    url: "/dashboard",
     items: [
       {
-        title: "Installation",
-        url: "/getting_started/installation",
+        title: "📊 Overview",
+        url: "/dashboard/overview",
       },
       {
-        title: "Project Structure",
-        url: "/getting_started/project_structure",
+        title: "🕒 Recent Updates",
+        url: "/dashboard/recent_updates",
       },
     ],
   },
   {
-    title: "Building Your Application",
-    url: "/building_your_application",
+    title: "💻 Components",
+    url: "/components",
     items: [
       {
-        title: "Routing",
-        url: "/building_your_application/routing",
+        title: "🎨 UI Components",
+        url: "/components/ui_components",
+        items: [
+          {
+            title: "🔘 Buttons",
+            url: "/components/ui_components/buttons",
+          },
+          {
+            title: "🖼️ Modals",
+            url: "/components/ui_components/modals",
+          },
+          {
+            title: "📋 Tables",
+            url: "/components/ui_components/tables",
+          },
+          {
+            title: "🔽 Dropdowns",
+            url: "/components/ui_components/dropdowns",
+          },
+        ],
       },
       {
-        title: "Data Fetching",
-        url: "/building_your_application/data_fetching",
+        title: "📝 Form Components",
+        url: "/components/form_components",
+        items: [
+          {
+            title: "🔤 Input Fields",
+            url: "/components/form_components/input_fields",
+          },
+          {
+            title: "☑️ Checkboxes & Radios",
+            url: "/components/form_components/checkboxes_radios",
+          },
+          {
+            title: "✅ Validation Utilities",
+            url: "/components/form_components/validation_utilities",
+          },
+        ],
       },
       {
-        title: "Rendering",
-        url: "/building_your_application/rendering",
-      },
-      {
-        title: "Caching",
-        url: "/building_your_application/caching",
-      },
-      {
-        title: "Styling",
-        url: "/building_your_application/styling",
-      },
-      {
-        title: "Optimizing",
-        url: "/building_your_application/optimizing",
-      },
-      {
-        title: "Configuring",
-        url: "/building_your_application/configuring",
-      },
-      {
-        title: "Testing",
-        url: "/building_your_application/testing",
-      },
-      {
-        title: "Authentication",
-        url: "/building_your_application/authentication",
-      },
-      {
-        title: "Deploying",
-        url: "/building_your_application/deploying",
-      },
-      {
-        title: "Upgrading",
-        url: "/building_your_application/upgrading",
-      },
-      {
-        title: "Examples",
-        url: "/building_your_application/examples",
+        title: "📐 Layout Components",
+        url: "/components/layout_components",
+        items: [
+          {
+            title: "📊 Grid System",
+            url: "/components/layout_components/grid_system",
+          },
+          {
+            title: "📦 Flex Utilities",
+            url: "/components/layout_components/flex_utilities",
+          },
+          {
+            title: "📁 Containers",
+            url: "/components/layout_components/containers",
+          },
+        ],
       },
     ],
   },
   {
-    title: "API Reference",
-    url: "/api_reference",
+    title: "⚡ Hooks",
+    url: "/hooks",
     items: [
       {
-        title: "Components",
-        url: "/api_reference/components",
+        title: "🔄 State Management",
+        url: "/hooks/state_management",
+        items: [
+          {
+            title: "🗂️ useLocalStorage",
+            url: "/hooks/state_management/use_local_storage",
+          },
+          {
+            title: "🛠️ useReducer Examples",
+            url: "/hooks/state_management/use_reducer_examples",
+          },
+        ],
       },
       {
-        title: "File Conventions",
-        url: "/api_reference/file_conventions",
+        title: "🌐 API Calls",
+        url: "/hooks/api_calls",
+        items: [
+          {
+            title: "📡 useFetch",
+            url: "/hooks/api_calls/use_fetch",
+          },
+          {
+            title: "🌍 useAxios",
+            url: "/hooks/api_calls/use_axios",
+          },
+        ],
       },
       {
-        title: "Functions",
-        url: "/api_reference/functions",
-      },
-      {
-        title: "next.config.js Options",
-        url: "/api_reference/next_config_js_options",
-      },
-      {
-        title: "CLI",
-        url: "/api_reference/cli",
-      },
-      {
-        title: "Edge Runtime",
-        url: "/api_reference/edge_runtime",
+        title: "🧩 Custom Hooks",
+        url: "/hooks/custom_hooks",
+        items: [
+          {
+            title: "⏱️ useDebounce",
+            url: "/hooks/custom_hooks/use_debounce",
+          },
+          {
+            title: "⏳ useThrottle",
+            url: "/hooks/custom_hooks/use_throttle",
+          },
+          {
+            title: "🔁 useToggle",
+            url: "/hooks/custom_hooks/use_toggle",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Architecture",
-    url: "/architecture",
+    title: "🔗 Algorithms",
+    url: "/algorithms",
     items: [
       {
-        title: "Accessibility",
-        url: "/architecture/accessibility",
+        title: "📚 Sorting & Searching",
+        url: "/algorithms/sorting_searching",
+        items: [
+          {
+            title: "⚡ Quick Sort",
+            url: "/algorithms/sorting_searching/quick_sort",
+          },
+          {
+            title: "🔍 Binary Search",
+            url: "/algorithms/sorting_searching/binary_search",
+          },
+        ],
       },
       {
-        title: "Fast Refresh",
-        url: "/architecture/fast_refresh",
+        title: "🛠️ Data Structures",
+        url: "/algorithms/data_structures",
+        items: [
+          {
+            title: "📑 Stack & Queue",
+            url: "/algorithms/data_structures/stack_queue",
+          },
+          {
+            title: "🔗 Linked List",
+            url: "/algorithms/data_structures/linked_list",
+          },
+        ],
       },
       {
-        title: "Next.js Compiler",
-        url: "/architecture/next_js_compiler",
-      },
-      {
-        title: "Supported Browsers",
-        url: "/architecture/supported_browsers",
-      },
-      {
-        title: "Turbopack",
-        url: "/architecture/turbopack",
+        title: "📈 Optimization",
+        url: "/algorithms/optimization",
+        items: [
+          {
+            title: "📊 Dynamic Programming",
+            url: "/algorithms/optimization/dynamic_programming",
+          },
+          {
+            title: "📦 Memoization Examples",
+            url: "/algorithms/optimization/memoization_examples",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Community",
-    url: "/community",
+    title: "🎨 Styles",
+    url: "/styles",
     items: [
       {
-        title: "Contribution Guide",
-        url: "/community/contribution_guide",
+        title: "🌐 Global Styles",
+        url: "/styles/global_styles",
+        items: [
+          {
+            title: "📄 Reset CSS",
+            url: "/styles/global_styles/reset_css",
+          },
+          {
+            title: "🎨 Theming",
+            url: "/styles/global_styles/theming",
+          },
+        ],
+      },
+      {
+        title: "✨ Animations",
+        url: "/styles/animations",
+        items: [
+          {
+            title: "🎥 CSS Transitions",
+            url: "/styles/animations/css_transitions",
+          },
+          {
+            title: "🎬 Framer Motion",
+            url: "/styles/animations/framer_motion",
+          },
+        ],
+      },
+      {
+        title: "🛠️ Utility Classes",
+        url: "/styles/utility_classes",
+        items: [
+          {
+            title: "📏 Margins & Padding",
+            url: "/styles/utility_classes/margins_padding",
+          },
+          {
+            title: "📐 Flexbox Utilities",
+            url: "/styles/utility_classes/flexbox_utilities",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "🛠️ Utilities",
+    url: "/utilities",
+    items: [
+      {
+        title: "📅 Date & Time",
+        url: "/utilities/date_time",
+        items: [
+          {
+            title: "⏳ Formatting Functions",
+            url: "/utilities/date_time/formatting_functions",
+          },
+          {
+            title: "🌍 Timezone Handling",
+            url: "/utilities/date_time/timezone_handling",
+          },
+        ],
+      },
+      {
+        title: "✂️ String Manipulations",
+        url: "/utilities/string_manipulations",
+        items: [
+          {
+            title: "🔤 Parsing & Tokenizing",
+            url: "/utilities/string_manipulations/parsing_tokenizing",
+          },
+        ],
+      },
+      {
+        title: "🚨 Error Handling",
+        url: "/utilities/error_handling",
+        items: [
+          {
+            title: "🗒️ Logging Utilities",
+            url: "/utilities/error_handling/logging_utilities",
+          },
+          {
+            title: "🛡️ Fallback Components",
+            url: "/utilities/error_handling/fallback_components",
+          },
+        ],
       },
     ],
   },

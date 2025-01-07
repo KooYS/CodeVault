@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { SearchForm } from "@/components/ui/search-form";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   Sidebar,
@@ -41,7 +41,7 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
   const breadcrumb = pathname.split("/").filter(Boolean);
   const [search, setSearch] = React.useState("");
   const [sidebarMenu, setSidebarMenu] = React.useState(side_bar_menu);
-
+  const { push } = useRouter();
   React.useEffect(() => {
     const filtered = side_bar_menu.reduce(
       (
@@ -51,6 +51,10 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
           items: {
             title: string;
             url: string;
+            items?: {
+              title: string;
+              url: string;
+            }[];
           }[];
         }[],
         menu
@@ -78,8 +82,11 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
       <Sidebar>
         <SidebarHeader>
           <div className="flex flex-col gap-2">
-            <div className="flex gap-2 p-2 items-center">
-              <div className="flex aspect-square size-10 items-center justify-center rounded-lg  text-sidebar-primary-foreground border p-px">
+            <div
+              className="flex gap-2 p-2 items-center cursor-pointer"
+              onClick={() => push("/")}
+            >
+              <div className="flex aspect-square size-10 items-center justify-center rounded-lg  text-sidebar-primary-foreground border p-px ">
                 <Image
                   src="/logo.png"
                   alt="Code Vault"
@@ -103,21 +110,41 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
             <SidebarMenu>
               {sidebarMenu.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={item.url === pathname}>
                     <a href={item.url} className="font-medium">
                       {item.title}
                     </a>
                   </SidebarMenuButton>
                   {item.items?.length ? (
                     <SidebarMenuSub>
-                      {item.items.map((item) => (
-                        <SidebarMenuSubItem key={item.title}>
+                      {item.items.map((sub_item) => (
+                        <SidebarMenuSubItem key={sub_item.title}>
                           <SidebarMenuSubButton
                             asChild
-                            isActive={item.url === pathname}
+                            isActive={sub_item.url === pathname}
                           >
-                            <a href={item.url}>{item.title}</a>
+                            <a href={sub_item.url}>
+                              <span className="truncate">{sub_item.title}</span>
+                            </a>
                           </SidebarMenuSubButton>
+                          {"items" in sub_item && sub_item.items.length ? (
+                            <SidebarMenuSub>
+                              {sub_item.items.map((item) => (
+                                <SidebarMenuSubItem key={item.title}>
+                                  <SidebarMenuSubButton
+                                    asChild
+                                    isActive={item.url === pathname}
+                                  >
+                                    <a href={item.url}>
+                                      <span className="truncate">
+                                        {item.title}
+                                      </span>
+                                    </a>
+                                  </SidebarMenuSubButton>
+                                </SidebarMenuSubItem>
+                              ))}
+                            </SidebarMenuSub>
+                          ) : null}
                         </SidebarMenuSubItem>
                       ))}
                     </SidebarMenuSub>
@@ -157,6 +184,32 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
                             sub_item.url ===
                             `/${breadcrumb[0]}/${breadcrumb[1]}`
                         )?.title}
+                  </BreadcrumbPage>
+                </BreadcrumbItem>
+
+                {breadcrumb.length > 2 && (
+                  <BreadcrumbSeparator className="hidden md:block" />
+                )}
+                <BreadcrumbItem>
+                  <BreadcrumbPage>
+                    {breadcrumb.length > 2 &&
+                      (
+                        side_bar_menu
+                          .find((item) => item.url === `/${breadcrumb[0]}`)
+                          ?.items?.find(
+                            (sub_item) =>
+                              sub_item.url ===
+                              `/${breadcrumb[0]}/${breadcrumb[1]}`
+                          ) as {
+                          title: string;
+                          url: string;
+                          items: { title: string; url: string }[];
+                        }
+                      ).items?.find(
+                        (sub_item) =>
+                          sub_item.url ===
+                          `/${breadcrumb[0]}/${breadcrumb[1]}/${breadcrumb[2]}`
+                      )?.title}
                   </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
