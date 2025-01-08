@@ -16,9 +16,9 @@ function findMenuByPath(menu: MenuItem[], path: string): MenuItem | null {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     path?: string[];
-  };
+  }>;
 }
 
 const removeEmoji = (text: string) => {
@@ -26,7 +26,8 @@ const removeEmoji = (text: string) => {
 };
 
 const Page = async ({ params }: PageProps) => {
-  const path = `/${(await params).path?.join("/") || ""}`; // 현재 URL 경로
+  const resolvedParams = await params;
+  const path = `/${resolvedParams.path?.join("/") || ""}`; // 현재 URL 경로
   const currentMenu = findMenuByPath(side_bar_menu, path);
 
   if (!currentMenu) {
