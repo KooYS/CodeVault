@@ -1,4 +1,10 @@
-const side_bar_menu = [
+interface MenuItem {
+  title: string;
+  url: string;
+  items?: MenuItem[];
+}
+
+const side_bar_menu: MenuItem[] = [
   {
     title: "🏠 Dashboard",
     url: "/dashboard",
@@ -271,4 +277,4 @@ const side_bar_menu = [
   },
 ];
 
-export { side_bar_menu };
+export { side_bar_menu, type MenuItem };

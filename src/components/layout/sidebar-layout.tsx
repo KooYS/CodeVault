@@ -5,7 +5,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
@@ -31,7 +30,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { side_bar_menu } from "@/config/docs";
+import { MenuItem, side_bar_menu } from "@/config/docs";
 
 interface SideBarLayoutProps {
   children: React.ReactNode;
@@ -43,37 +42,21 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
   const [sidebarMenu, setSidebarMenu] = React.useState(side_bar_menu);
   const { push } = useRouter();
   React.useEffect(() => {
-    const filtered = side_bar_menu.reduce(
-      (
-        acc: {
-          title: string;
-          url: string;
-          items: {
-            title: string;
-            url: string;
-            items?: {
-              title: string;
-              url: string;
-            }[];
-          }[];
-        }[],
-        menu
-      ) => {
-        const titleMatch = menu.title
-          .toLowerCase()
-          .includes(search.toLowerCase());
-        const itemsMatch = menu.items.filter((item) =>
+    const filtered = side_bar_menu.reduce((acc: MenuItem[], menu: MenuItem) => {
+      const titleMatch = menu.title
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const itemsMatch =
+        menu?.items?.filter((item) =>
           item.title.toLowerCase().includes(search.toLowerCase())
-        );
-        if (titleMatch) {
-          acc.push(menu);
-        } else if (itemsMatch.length > 0) {
-          acc.push({ ...menu, items: itemsMatch });
-        }
-        return acc;
-      },
-      []
-    );
+        ) || [];
+      if (titleMatch) {
+        acc.push(menu);
+      } else if (itemsMatch.length > 0) {
+        acc.push({ ...menu, items: itemsMatch });
+      }
+      return acc;
+    }, []);
 
     setSidebarMenu(filtered);
   }, [search]);
@@ -127,7 +110,7 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
                               <span className="truncate">{sub_item.title}</span>
                             </a>
                           </SidebarMenuSubButton>
-                          {"items" in sub_item && sub_item.items.length ? (
+                          {sub_item.items && sub_item.items.length ? (
                             <SidebarMenuSub>
                               {sub_item.items.map((item) => (
                                 <SidebarMenuSubItem key={item.title}>
@@ -164,7 +147,15 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
+                  <BreadcrumbLink
+                    href={
+                      breadcrumb.length > 0
+                        ? side_bar_menu.find(
+                            (item) => item.url === `/${breadcrumb[0]}`
+                          )?.url
+                        : "#"
+                    }
+                  >
                     {breadcrumb.length > 0 &&
                       side_bar_menu.find(
                         (item) => item.url === `/${breadcrumb[0]}`
@@ -175,7 +166,19 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
                   <BreadcrumbSeparator className="hidden md:block" />
                 )}
                 <BreadcrumbItem>
-                  <BreadcrumbPage>
+                  <BreadcrumbLink
+                    href={
+                      breadcrumb.length > 1
+                        ? side_bar_menu
+                            .find((item) => item.url === `/${breadcrumb[0]}`)
+                            ?.items?.find(
+                              (sub_item) =>
+                                sub_item.url ===
+                                `/${breadcrumb[0]}/${breadcrumb[1]}`
+                            )?.url
+                        : "#"
+                    }
+                  >
                     {breadcrumb.length > 1 &&
                       side_bar_menu
                         .find((item) => item.url === `/${breadcrumb[0]}`)
@@ -184,14 +187,36 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
                             sub_item.url ===
                             `/${breadcrumb[0]}/${breadcrumb[1]}`
                         )?.title}
-                  </BreadcrumbPage>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
 
                 {breadcrumb.length > 2 && (
                   <BreadcrumbSeparator className="hidden md:block" />
                 )}
                 <BreadcrumbItem>
-                  <BreadcrumbPage>
+                  <BreadcrumbLink
+                    href={
+                      breadcrumb.length > 2
+                        ? (
+                            side_bar_menu
+                              .find((item) => item.url === `/${breadcrumb[0]}`)
+                              ?.items?.find(
+                                (sub_item) =>
+                                  sub_item.url ===
+                                  `/${breadcrumb[0]}/${breadcrumb[1]}`
+                              ) as {
+                              title: string;
+                              url: string;
+                              items: { title: string; url: string }[];
+                            }
+                          ).items?.find(
+                            (sub_item) =>
+                              sub_item.url ===
+                              `/${breadcrumb[0]}/${breadcrumb[1]}/${breadcrumb[2]}`
+                          )?.url
+                        : "#"
+                    }
+                  >
                     {breadcrumb.length > 2 &&
                       (
                         side_bar_menu
@@ -210,7 +235,7 @@ const SideBarLayout: React.FC<SideBarLayoutProps> = ({ children }) => {
                           sub_item.url ===
                           `/${breadcrumb[0]}/${breadcrumb[1]}/${breadcrumb[2]}`
                       )?.title}
-                  </BreadcrumbPage>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

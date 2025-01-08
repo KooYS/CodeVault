@@ -86,4 +86,18 @@
   body {
     height: 100%;
   }
+
+  @keyframes bounceRight {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(10%);
+    }
+  }
+
+  .bounce-right {
+    animation: bounceRight 1s infinite;
+  }
 }
