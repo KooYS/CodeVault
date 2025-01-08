@@ -120,6 +120,10 @@ const side_bar_menu: MenuItem[] = [
         url: "/hooks/custom_hooks",
         items: [
           {
+            title: "⏳ useLoading",
+            url: "/hooks/custom_hooks/use_loading",
+          },
+          {
             title: "⏱️ useDebounce",
             url: "/hooks/custom_hooks/use_debounce",
           },
