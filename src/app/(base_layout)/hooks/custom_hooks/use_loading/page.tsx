@@ -25,10 +25,13 @@ const Page = () => {
         main="useLoading"
         sub="지연시간이 걸리는 작업을 수행할 때 로딩 중임을 사용자에게 알리기 위한 Hook 입니다."
       />
-      <SubTitle># Example</SubTitle>
+      <SubTitle># 간단한 설명</SubTitle>
       <Description>
-        <b>좌측 사이드 바</b> 혹은 검색을 통하여 원하는 카테고리의 내용을
-        확인하고 아래와 같은 CodeBlock에서 복사를 통해 사용하면 됩니다.
+        <b>{`<Loading/>`}</b>를 선언하고 setVisible 혹은 isVisible를 활용하여
+        화면 로딩을 표현할 수 있으며
+        <b>{`<Loading/>`}</b>에 svg를 직접 수정하여 로딩 화면을 변경할 수
+        있습니다. 아래의 Loading Trigger 버튼을 클릭하여 예제를 확인해볼 수
+        있습니다.
       </Description>
 
       <Description className="mb-10">

@@ -1,6 +1,7 @@
 interface MenuItem {
   title: string;
   url: string;
+  visible?: boolean;
   items?: MenuItem[];
 }
 
@@ -8,6 +9,7 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "🏠 Dashboard",
     url: "/dashboard",
+    visible: true,
     items: [
       {
         title: "📊 Overview",
@@ -22,6 +24,7 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "💻 Components",
     url: "/components",
+    visible: false,
     items: [
       {
         title: "🎨 UI Components",
@@ -86,10 +89,12 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "⚡ Hooks",
     url: "/hooks",
+    visible: true,
     items: [
       {
         title: "🔄 State Management",
         url: "/hooks/state_management",
+        visible: false,
         items: [
           {
             title: "🗂️ useLocalStorage",
@@ -104,6 +109,7 @@ const side_bar_menu: MenuItem[] = [
       {
         title: "🌐 API Calls",
         url: "/hooks/api_calls",
+        visible: false,
         items: [
           {
             title: "📡 useFetch",
@@ -118,22 +124,30 @@ const side_bar_menu: MenuItem[] = [
       {
         title: "🧩 Custom Hooks",
         url: "/hooks/custom_hooks",
+        visible: true,
         items: [
           {
             title: "⏳ useLoading",
             url: "/hooks/custom_hooks/use_loading",
           },
           {
+            title: "useMedia",
+            url: "/hooks/custom_hooks/use_media",
+          },
+          {
             title: "⏱️ useDebounce",
             url: "/hooks/custom_hooks/use_debounce",
+            visible: false,
           },
           {
             title: "⏳ useThrottle",
             url: "/hooks/custom_hooks/use_throttle",
+            visible: false,
           },
           {
             title: "🔁 useToggle",
             url: "/hooks/custom_hooks/use_toggle",
+            visible: false,
           },
         ],
       },
@@ -142,6 +156,7 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "🔗 Algorithms",
     url: "/algorithms",
+    visible: false,
     items: [
       {
         title: "📚 Sorting & Searching",
@@ -190,6 +205,7 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "🎨 Styles",
     url: "/styles",
+    visible: false,
     items: [
       {
         title: "🌐 Global Styles",
@@ -238,6 +254,7 @@ const side_bar_menu: MenuItem[] = [
   {
     title: "🛠️ Utilities",
     url: "/utilities",
+    visible: false,
     items: [
       {
         title: "📅 Date & Time",
@@ -281,4 +298,15 @@ const side_bar_menu: MenuItem[] = [
   },
 ];
 
-export { side_bar_menu, type MenuItem };
+const filterMenu = (menu: MenuItem[]): MenuItem[] => {
+  return menu
+    .filter((item) => item.visible !== false)
+    .map((item) => ({
+      ...item,
+      items: item.items ? filterMenu(item.items) : [],
+    }));
+};
+
+const filtered_side_bar_menu = filterMenu(side_bar_menu);
+
+export { filtered_side_bar_menu as side_bar_menu, type MenuItem };
