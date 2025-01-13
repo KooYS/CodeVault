@@ -45,10 +45,10 @@ const Loading = ({ visible }: Props) => {
     : null;
 };
 
-interface Props {
+interface LoadingProps {
   defaultVisible?: boolean;
 }
-const useLoading = (props?: Props) => {
+const useLoading = (props?: LoadingProps) => {
   const [visible, setVisible] = React.useState(!!props?.defaultVisible);
 
   return {
