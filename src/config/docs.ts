@@ -94,15 +94,15 @@ const side_bar_menu: MenuItem[] = [
       {
         title: "🔄 State Management",
         url: "/hooks/state_management",
-        visible: false,
+        visible: true,
         items: [
           {
-            title: "🗂️ useLocalStorage",
+            title: "useLocalStorage",
             url: "/hooks/state_management/use_local_storage",
           },
           {
-            title: "🛠️ useReducer Examples",
-            url: "/hooks/state_management/use_reducer_examples",
+            title: "useSessionStorage",
+            url: "/hooks/state_management/use_session_storage",
           },
         ],
       },
@@ -127,7 +127,7 @@ const side_bar_menu: MenuItem[] = [
         visible: true,
         items: [
           {
-            title: "⏳ useLoading",
+            title: "useLoading",
             url: "/hooks/custom_hooks/use_loading",
           },
           {

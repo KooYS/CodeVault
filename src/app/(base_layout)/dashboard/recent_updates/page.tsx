@@ -47,6 +47,26 @@ const Page = () => {
             </Link>{" "}
             추가
           </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-base font-normal mb-4">
+            -{" "}
+            <Link
+              className="underline underline-offset-4"
+              href={"/hooks/state_management/use_local_storage"}
+            >
+              useLocalStorage
+            </Link>{" "}
+            추가
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-base font-normal mb-4">
+            -{" "}
+            <Link
+              className="underline underline-offset-4"
+              href={"/hooks/state_management/use_session_storage"}
+            >
+              useSessionStorage
+            </Link>{" "}
+            추가
+          </p>
         </div>
       ),
     },
